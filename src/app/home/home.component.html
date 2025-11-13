@@ -1,0 +1,71 @@
+<!-- STORIES -->
+<div class="stories">
+  <div class="story" *ngFor="let s of stories">
+    <img [src]="s.img" />
+    <p>{{ s.name }}</p>
+  </div>
+</div>
+
+<!-- FEED SECTION -->
+<div class="feed">
+
+  <div class="post" *ngFor="let post of posts">
+
+    <!-- HEADER -->
+    <div class="post-header">
+      <img [src]="post.userImg" class="profile-pic" />
+      <p>{{ post.username }}</p>
+    </div>
+
+    <!-- IMAGE -->
+    <img [src]="post.image" class="post-img" />
+
+    <!-- ACTIONS -->
+    <div class="post-actions">
+      <i 
+        (click)="toggleLike(post)"
+        [ngClass]="{
+          'fa-solid fa-heart liked-heart': post.liked,
+          'fa-regular fa-heart': !post.liked
+        }">
+      </i>
+
+      <i class="fa-regular fa-comment" (click)="openComments(post)"></i>
+      <i class="fa-solid fa-paper-plane"></i>
+    </div>
+
+    <!-- LIKE COUNT -->
+    <p class="likes-count">{{ post.likes }} likes</p>
+
+    <!-- CAPTION -->
+    <p class="caption">
+      <b>{{ post.username }}</b> {{ post.caption }}
+    </p>
+
+  </div>
+</div>
+
+<!-- COMMENT MODAL -->
+<div class="comment-modal" *ngIf="showCommentModal">
+
+  <div class="comment-box">
+
+    <div class="modal-header">
+      <h3>Comments</h3>
+      <i class="fa-solid fa-xmark close-btn" (click)="closeComments()"></i>
+    </div>
+
+    <div class="comment-list">
+      <div class="comment" *ngFor="let c of activePost?.comments">
+        <b>{{ c.user }}</b> {{ c.text }}
+      </div>
+    </div>
+
+    <div class="comment-input">
+      <input type="text" placeholder="Add a comment…" [(ngModel)]="newComment" />
+      <button (click)="addComment()">Post</button>
+    </div>
+
+  </div>
+
+</div>

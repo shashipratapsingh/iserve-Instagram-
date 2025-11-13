@@ -1,0 +1,101 @@
+/* CENTER PAGE LIKE INSTAGRAM */
+.main-container {
+  max-width: 600px;
+  margin: auto;
+  padding-bottom: 80px;
+  background: #fff;
+}
+
+/* TOP NAVBAR */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+}
+
+.logo-title {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.nav-actions i {
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+/* BOTTOM NAVBAR */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-around;
+  font-size: 26px;
+}
+/* FEED ICON COLORS */
+.post-actions i {
+  transition: 0.25s;
+}
+
+.fa-heart {
+  color: #E1306C; /* Pink */
+}
+
+.fa-comment {
+  color: #0095F6; /* Blue */
+}
+
+.fa-paper-plane {
+  color: #1DA1F2; /* Light blue */
+}
+
+/* Liked heart animation */
+.liked-heart {
+  color: #ff004f !important;
+  transform: scale(1.3);
+}
+.story img {
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background: 
+    linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, #ff004f, #f9a100, #ffdd00) border-box;
+}
+.bottom-nav i {
+  color: #6e6e6e;   /* Default grey */
+  transition: 0.25s;
+}
+
+.bottom-nav i:hover {
+  transform: scale(1.2);
+  color: #0095F6; /* Blue on hover */
+}
+
+/* ACTIVE ICON (current page) */
+.bottom-nav i.active {
+  color: #0095F6;
+  transform: scale(1.3);
+}
+.bottom-nav i:hover,
+.nav-actions i:hover,
+.post-actions i:hover {
+  filter: brightness(1.3);
+  transform: scale(1.25);
+}
+.top-nav i {
+  color: #444;
+  transition: 0.3s ease;
+}
+
+.top-nav i:hover {
+  color: #0095F6;
+  transform: translateY(-3px);
+}
