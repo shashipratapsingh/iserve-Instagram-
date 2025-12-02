@@ -6,6 +6,7 @@
   background: #fff;
 }
 
+
 /* TOP NAVBAR */
 .top-nav {
   display: flex;
@@ -79,6 +80,8 @@
   color: #0095F6; /* Blue on hover */
 }
 
+
+
 /* ACTIVE ICON (current page) */
 .bottom-nav i.active {
   color: #0095F6;
@@ -98,4 +101,27 @@
 .top-nav i:hover {
   color: #0095F6;
   transform: translateY(-3px);
+}
+/* my logo desing -1*/
+
+.app-logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff004f, #7421f8, #0099ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+} 
+
+/* my logo desing -2*/
+
+ .app-logo1 {
+ font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f7d774, #e7b10a, #d79c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  font-family: "Poppins", sans-serif;
 }

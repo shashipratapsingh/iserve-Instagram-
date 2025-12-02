@@ -28,4 +28,12 @@ export class AppComponent {
     post.liked = !post.liked;
     post.liked ? post.likes++ : post.likes--;
   }
+  onFileSelected(event: any) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  console.log("Selected file:", file);
+
+  // Aage backend ya preview ke liye file yahi mil jayegi  
+}
 }

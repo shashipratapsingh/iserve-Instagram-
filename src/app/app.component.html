@@ -1,6 +1,6 @@
 <!-- TOP NAVBAR -->
 <nav class="top-nav">
-  <h2 class="logo-title">iServe</h2>
+  <h2 class="app-logo">iServe</h2>
 
   <div class="nav-actions">
     <i class="fa-regular fa-heart"></i>
@@ -32,8 +32,15 @@
      routerLinkActive="active"></i>
 
   <i class="fa-solid fa-circle-plus" 
-     routerLink="/upload"
-     routerLinkActive="active"></i>
+     (click)="filePicker.click()">
+  </i>
+  <input 
+    #filePicker
+    type="file"
+    accept="image/*"
+    style="display:none"
+    (change)="onFileSelected($event)"
+  />
 
   <i class="fa-regular fa-heart" 
      routerLink="/notifications"

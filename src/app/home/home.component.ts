@@ -37,7 +37,7 @@ export class HomeComponent {
       ]
     },
     {
-      username: "neha_k",
+      username: "Stuff",
       userImg: "assets/user2.jpg",
       image: "assets/post2.jpg",
       caption: "Beach day 🏖️",
