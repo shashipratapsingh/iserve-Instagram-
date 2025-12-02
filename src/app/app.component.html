@@ -31,16 +31,15 @@
      routerLink="/reels"
      routerLinkActive="active"></i>
 
-  <i class="fa-solid fa-circle-plus" 
-     (click)="filePicker.click()">
-  </i>
-  <input 
-    #filePicker
-    type="file"
-    accept="image/*"
-    style="display:none"
-    (change)="onFileSelected($event)"
-  />
+  <i class="fa-solid fa-circle-plus" (click)="filePicker.click()"></i>
+
+<input 
+  #filePicker
+  type="file"
+  accept="image/*"
+  style="display:none"
+  (change)="onFileSelected($event)"
+/>
 
   <i class="fa-regular fa-heart" 
      routerLink="/notifications"
