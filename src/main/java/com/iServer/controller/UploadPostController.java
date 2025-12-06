@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/iserver/v1")
@@ -25,5 +27,12 @@ public class UploadPostController {
     ) {
         Post saved = postService.uploadPost(username, caption, image);
         return ResponseEntity.ok(saved);
+    }
+
+
+    @GetMapping("/getPost")
+    public ResponseEntity<?> getAllPosts() {
+        List<Post> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
     }
 }

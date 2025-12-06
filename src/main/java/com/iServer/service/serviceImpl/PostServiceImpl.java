@@ -10,6 +10,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -23,31 +24,38 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post uploadPost(String username, String caption, MultipartFile image) {
         try {
-            // 1. Create folder if not exists
-            String uploadDir = "uploads/posts/";
+            // 🔹 1. EXACT वही folder जहाँ file D: में रखनी है
+            String uploadDir = "D:/FeProjects/mySocialMedia/iserver-img/";  // 👈 posts/ हटा दिया
+
             File dir = new File(uploadDir);
             if (!dir.exists()) dir.mkdirs();
 
-            // 2. Unique filename
+            // 🔹 2. Unique file name
             String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
 
-            // 3. Save file physically
+            // 🔹 3. Physically save
             Path filePath = Paths.get(uploadDir + fileName);
             Files.write(filePath, image.getBytes());
 
-            // 4. Build entity
+            // 🔹 4. Entity build
             Post post = new Post();
             post.setUsername(username);
             post.setCaption(caption);
             post.setImageName(fileName);
-            post.setImageUrl("http://localhost:8080/" + uploadDir + fileName);
 
-            // 5. Save to DB
+            // 🔹 5. FRONTEND for public URL  (http)
+            post.setImageUrl("http://localhost:8083/uploads/" + fileName);
+
             return repository.save(post);
 
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Post upload failed");
         }
+    }
+
+    @Override
+    public List<Post> getAllPosts() {
+        return repository.findAll();
     }
 }

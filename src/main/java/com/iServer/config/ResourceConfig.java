@@ -9,7 +9,8 @@ public class ResourceConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // URL: /uploads/**  ->  Disk: D:/FeProjects/mySocialMedia/iserver-img/
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:uploads/");
+                .addResourceLocations("file:D:/FeProjects/mySocialMedia/iserver-img/");
     }
 }
