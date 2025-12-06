@@ -13,6 +13,8 @@ import { API_BASE_URL } from './constant';
 })
  
 export class AppComponent {
+
+// uploading  Post 
   selectedFile: File | null = null;
 
   constructor(private http: HttpClient) {}
@@ -53,18 +55,7 @@ export class AppComponent {
       alert("Upload Failed");
     }
   });
-       
-  }
-  posts = [
-    {
-      username: "john_doe",
-      userImg: "assets/user1.jpg",
-      image: "assets/post1.jpg",
-      caption: "Enjoying sunset ",
-      liked: false,
-      likes: 120
-    }
-  ];
+}   
 
   toggleLike(post: any) {
     post.liked = !post.liked;

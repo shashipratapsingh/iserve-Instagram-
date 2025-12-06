@@ -1,65 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
-import { FormsModule } from '@angular/forms';  // ✅ REQUIRED for ngModel
+import { FormsModule } from '@angular/forms';
+import { PostService } from '../services/PostService';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass, FormsModule],  // ✅ Add FormsModule here
+  imports: [NgFor, NgIf, NgClass, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  // -------------------------
-  // STORIES
-  // -------------------------
+  constructor(private postService: PostService) {}
+
   stories = [
     { name: "Rohit", img: "assets/story1.jpg" },
     { name: "Neha", img: "assets/story2.jpg" },
     { name: "Vikas", img: "assets/story3.jpg" }
   ];
 
-  // -------------------------
-  // POSTS / FEED
-  // -------------------------
-  posts = [
-    {
-      username: "john_doe",
-      userImg: "assets/user1.jpg",
-      image: "assets/post1.jpg",
-      caption: "Enjoying the sunset 🌅",
-      liked: false,
-      likes: 120,
-      comments: [
-        { user: "Rohit", text: "Nice 🔥" },
-        { user: "Neha", text: "Beautiful shot!" }
-      ]
-    },
-    {
-      username: "Stuff",
-      userImg: "assets/user2.jpg",
-      image: "assets/post2.jpg",
-      caption: "Beach day 🏖️",
-      liked: true,
-      likes: 340,
-      comments: [
-        { user: "Amit", text: "Awesome!" }
-      ]
-    }
-  ];
+  posts: any[] = [];   // 🔥 NOW THIS WILL COME FROM BACKEND
 
-  // -------------------------
-  // LIKE / UNLIKE
-  // -------------------------
+  ngOnInit() {
+    this.loadPosts();
+  }
+
+  loadPosts() {
+  this.postService.getAllPosts().subscribe({
+    next: (res: any[]) => {
+      console.log("Posts from backend:", res);
+
+     this.posts = res.map((p: any) => ({
+        id: p.id,
+        username: p.username,
+        caption: p.caption,
+        imageUrl: p.imageUrl,          // 👈 yahi backend se aa raha hai
+        userImg: "assets/story1.jpg",  // DP static filhaal
+        liked: false,
+        likes: 0,
+        comments: []
+      }));
+    },
+    error: (err) => {
+      console.error("Error loading posts:", err);
+    }
+  });
+}
+
+
   toggleLike(post: any) {
     post.liked = !post.liked;
     post.liked ? post.likes++ : post.likes--;
   }
 
-  // -------------------------
-  // COMMENT MODAL
-  // -------------------------
   showCommentModal = false;
   activePost: any = null;
   newComment = "";
