@@ -3,6 +3,7 @@ package com.iServer.service.serviceImpl;
 import com.iServer.entity.Post;
 import com.iServer.repository.PostRepository;
 import com.iServer.service.PostService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +16,12 @@ import java.util.List;
 @Service
 public class PostServiceImpl implements PostService {
 
+    @Value("${file.upload.dir}")
+    private String uploadDir;   // ✅ CLASS LEVEL
+
+    @Value("${local.storege.path}")
+    private String localStoragePath;
+
     private final PostRepository repository;
 
     public PostServiceImpl(PostRepository repository) {
@@ -23,9 +30,10 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post uploadPost(String username, String caption, MultipartFile image) {
+
         try {
             // 🔹 1. EXACT वही folder जहाँ file D: में रखनी है
-            String uploadDir = "D:/FeProjects/mySocialMedia/iserver-img/";  // 👈 posts/ हटा दिया
+            //String uploadDir = "D:/FeProjects/mySocialMedia/iserver-img/";  // 👈 posts/ हटा दिया
 
             File dir = new File(uploadDir);
             if (!dir.exists()) dir.mkdirs();
@@ -44,7 +52,7 @@ public class PostServiceImpl implements PostService {
             post.setImageName(fileName);
 
             // 🔹 5. FRONTEND for public URL  (http)
-            post.setImageUrl("http://localhost:8083/uploads/" + fileName);
+            post.setImageUrl(localStoragePath + fileName);
 
             return repository.save(post);
 
