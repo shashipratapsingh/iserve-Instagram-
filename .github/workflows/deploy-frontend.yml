@@ -3,7 +3,7 @@ name: Deploy Angular Frontend to EC2
 on:
   push:
     branches:
-      - main   # agar branch master hai to master likho
+      - master   # agar branch master hai to master likho
 
 jobs:
   deploy:
