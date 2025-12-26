@@ -48,7 +48,8 @@ export class AppComponent {
     next: (res) => {
       console.log("API URL: " + API_BASE_URL + "/upload");
       console.log("Post Uploaded Successfully:", res);
-      alert("Image Uploaded Successfully!");
+      //alert("Image Uploaded Successfully!");
+      window.location.reload();
     },
     error: (err) => {
       console.error("Upload Failed:", err);
