@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   stories = [
-    { name: "Rohit1", img: "assets/story1.jpg" },
-    { name: "Neha", img: "assets/story2.jpg" },
+    { name: "Rohit121raj", img: "assets/story1.jpg" },
+    { name: "Nehas sigh", img: "assets/story2.jpg" },
     { name: "Vikas", img: "assets/story3.jpg" }
   ];
 
